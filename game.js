@@ -1,15 +1,17 @@
+'use strict'
+
+
 const textElement = document.getElementById('text')
 const buttonOptionsElement = document.getElementById('option-buttons')
 
 // will keep track of what character has on them for example goooo
 let state = {}
 
-
-
 // startGame
 function startGame() {
     // state is initially empty at start of game
     state = {}
+
     // show the very first option
     displayTextNode(1)
 
@@ -49,18 +51,21 @@ function displayTextNode(textNodeIndex) {
 
 function displayOption(option) {
     // is there a required state? either way display the option
-    return option.requireState == null || option.requiredState(state)
+    return option.requiredState == null || option.requiredState(state)
 }
 
 // function that happens everytime user chooses an option
 function selectOption(option) {
     // implement to get to your next option ie if nextText is 2 it'll go to text with id:2
     const nextTextNodeId = option.nextText
-    // first set state to initial state and then to option.setState this will then change initial state to whatever is in object.setState sof if state is = false but option.setState is = true state is now equal to true this will return a brand new object which we'll set to our current state
+  
     // THIS IF STATEMENT IS USED TO RESTART GAME
     if (nextTextNodeId <= 0){
         return startGame()
     }
+      // first set state to initial state and then to option.setState this will then change initial state to whatever is in object.setState 
+    //so if state is = false but option.setState is = true state is now equal to true this will return a brand new object which we'll set 
+    //to our current state
     state = Object.assign(state, option.setState)
     displayTextNode(nextTextNodeId)
 
@@ -74,7 +79,8 @@ const textNodes = [
         options: [
             {
                 text: 'Take the goo',
-                setState: { blueGoo: true },
+                // user receives blue goo
+                setState: {  blueGoo: true},
                 nextText: 2
             },
             {
@@ -98,7 +104,7 @@ const textNodes = [
             {
                 text: 'Trade the goo for a shield',
                 requiredState: (currentState) => currentState.blueGoo,
-                // now you don't have blue goo you traded it for the sword
+                // now you don't have blue goo you traded it for the shield
                 setState: { blueGoo: false, shield: true },
 
                 nextText: 3
@@ -168,16 +174,17 @@ const textNodes = [
             },
             {
                 text: 'Attack it with your sword',
-
+                requiredState:(currentState)=> currentState.sword,
                 nextText: 9
             },
             {
                 text: 'Hide behind your shield',
+                requiredState:(currentState)=> currentState.shield,
                 nextText: 10
             },
             {
                 text: 'Throw the blue goo at it',
-
+                requiredState: (currentState)=> currentState.blueGoo,
                 nextText: 11
             }
         ]
