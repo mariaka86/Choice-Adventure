@@ -362,7 +362,7 @@ const textNodes = [
 
 //     {
 //         id: 8,
-//         text: "After finishing your tea, the old woman tells you that you must complete a task to leave the cottage. She hands you a map and tells you to find a hidden treasure in the nearby woods. Do you accept the task or politely decline and leave?",
+//         text: "After finishing your tea, the old woman tells you that you must complete a task to leave the cottage.She hands you a map and tells you to find a hidden treasure in the nearby woods. Do you accept the task or politely decline and leave?",
 //         options: [
 //             {
 //                 text: 'You accept the task',
@@ -438,14 +438,18 @@ const textNodes = [
 //         options: [
 //             {
 //                 text: 'you wish for wealth',
+                // setState: { money : true},, 
 //                 nextText: 22,
 //             },
 //             {
 //                 text: 'you wish for power',
-//                 nextText: 23
+                 // setState: { power: true},
+
+//              nextText: 23
 //             },
 //             {
 //                 text: 'you wish for love',
+                 //setState: {  love: true},
 //                 nextText: 24
 //             },
 
@@ -607,6 +611,8 @@ const textNodes = [
 //         options: [
 //             {
 //                 text: 'You try to reverse your wish',
+                    //  requiredState: (currentState) => currentState.wealth,
+                    //setState:{wealth:false}
 //                 nextText:43
 //             },
 //             {
@@ -744,7 +750,8 @@ const textNodes = [
 //     },
 //     {
 //         id: 43,
-//         text: "You attempt to reverse your wish for wealth, but it is too late, and you must live with the consequences of your wish",
+//         text: "You attempt to reverse your wish for wealth, the fairy decides you're ungrateful now you're poor AND unhappy TRY AGAIN",
+        // nextText: -1
 
 //     },
 //     {
